@@ -28,3 +28,13 @@ const operate = function(operator, num1, num2){
         return divide(num1, num2);
     }
 }
+
+// Add number buttons to div with numbers class
+const numbers = document.querySelector('.numbers');
+
+for(let i = 1; i < 10; i++){
+    const button = document.createElement('button');
+    button.textContent = i;
+    button.value = i;
+    numbers.append(button);
+}
