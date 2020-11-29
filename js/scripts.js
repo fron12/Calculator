@@ -38,3 +38,47 @@ for(let i = 1; i < 10; i++){
     button.value = i;
     numbers.append(button);
 }
+
+// When a button is clicked, put it on the display
+const buttons = document.querySelectorAll('button');
+const display = document.querySelector('.display');
+console.log('display.textContent =' + display.textContent);
+buttons.forEach(button => {
+    button.addEventListener('click', (e) => {
+            console.log(display.textContent == 0)
+            let displayStuff = display.textContent.split(" ");
+            let displayLast = displayStuff[displayStuff.length - 1];
+            let eTarget = e.target.value;
+            if(display.textContent == 0){
+                display.textContent = eTarget;
+                console.log(display.textContent);
+            }
+            else{
+                if(eTarget === '+' || eTarget === '-' || eTarget === '*' || eTarget === '/' || eTarget === '='){
+                    if(displayLast === '+' || displayLast === '-' || displayLast === '*' || displayLast === '/' || displayLast === '='){
+                        displayStuff.pop();
+                        displayStuff.push(eTarget);
+                        display.textContent = displayStuff.join(" ");
+                    }
+                    else{
+                        display.textContent += ' ' + eTarget;
+                    }
+                    console.log(displayStuff.splice(0, 3));
+                    console.log(displayStuff);
+                }
+                else if(eTarget === 'clear'){
+                    display.textContent = 0;
+                }
+                else{
+                    if(Number.isInteger(parseInt(displayLast))){
+                        display.textContent += eTarget;
+                    }
+                    else{
+                        display.textContent += ' ' + eTarget;
+                    }
+                }
+            }
+        })
+    }
+)
+
